@@ -1,5 +1,5 @@
-searxng is a fork from `searx <https://github.com/searx/searx>`_ and is
-maintained by Markus Heiser (`@return42 <https://github.com/return42>`_)
+searxng-se is a fork from `searxng <https://github.com/searxng/searxng>`_ and is
+maintained by Emi (`@AeshEmi1 <https://github.com/AeshEmi1>`_)
 
 People who have submitted patches/translations, reported bugs, consulted
 features or generally made searx better:
@@ -12,7 +12,7 @@ features or generally made searx better:
 - `@Cqoicebordel <https://github.com/Cqoicebordel>`_
 - Marc Abonce Seguin `@MarcAbonce <https://github.com/MarcAbonce>`_
 - `@pofilo <https://github.com/pofilo>`_
-
+- Markus Heiser (`@return42 <https://github.com/return42>`_)
 - Laszlo Hammerl
 - Stefan Marsiske
 - Gabor Nagy
@@ -176,4 +176,3 @@ features or generally made searx better:
 - Patrick Evans `https://github.com/holysoles`
 - Daniel Mowitz `<https://daniel.mowitz.rocks>`
 - `Bearz314 <https://github.com/bearz314>`_
-- `AeshEmi1 <https://github.com/AeshEmi1>`_
