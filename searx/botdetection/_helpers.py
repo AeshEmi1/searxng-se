@@ -98,7 +98,6 @@ def get_real_ip(request: SXNG_Request) -> str:
 
     forwarded_for = request.headers.get("X-Forwarded-For")
     real_ip = request.headers.get('X-Real-IP')
-    remote_addr = request.remote_addr
     # logger.debug(
     #     "X-Forwarded-For: %s || X-Real-IP: %s || request.remote_addr: %s", forwarded_for, real_ip, remote_addr
     # )
@@ -109,8 +108,7 @@ def get_real_ip(request: SXNG_Request) -> str:
         from . import cfg  # pylint: disable=import-outside-toplevel, cyclic-import
 
         forwarded_for = [x.strip() for x in forwarded_for.split(',')]
-        x_for: int = cfg['real_ip.x_for']  # type: ignore
-        forwarded_for = forwarded_for[-min(len(forwarded_for), x_for)]
+        forwarded_for = forwarded_for[0]
 
     if not real_ip:
         _log_error_only_once("X-Real-IP header is not set!")
@@ -118,15 +116,7 @@ def get_real_ip(request: SXNG_Request) -> str:
     if forwarded_for and real_ip and forwarded_for != real_ip:
         logger.warning("IP from X-Real-IP (%s) is not equal to IP from X-Forwarded-For (%s)", real_ip, forwarded_for)
 
-    if forwarded_for and remote_addr and forwarded_for != remote_addr:
-        logger.warning(
-            "IP from WSGI environment (%s) is not equal to IP from X-Forwarded-For (%s)", remote_addr, forwarded_for
-        )
-
-    if real_ip and remote_addr and real_ip != remote_addr:
-        logger.warning("IP from WSGI environment (%s) is not equal to IP from X-Real-IP (%s)", remote_addr, real_ip)
-
-    request_ip = ip_address(forwarded_for or real_ip or remote_addr or '0.0.0.0')
+    request_ip = ip_address(forwarded_for or real_ip or '0.0.0.0')
     if request_ip.version == 6 and request_ip.ipv4_mapped:
         request_ip = request_ip.ipv4_mapped
 

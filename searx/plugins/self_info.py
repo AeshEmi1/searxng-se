@@ -48,9 +48,6 @@ class SXNGPlugin(Plugin):
         if search.search_query.pageno > 1:
             return results
 
-        if self.ip_regex.search(search.search_query.query):
-            results.add(results.types.Answer(answer=gettext("Your IP is: ") + get_real_ip(request)))
-
         if self.ua_regex.match(search.search_query.query):
             results.add(results.types.Answer(answer=gettext("Your user-agent is: ") + str(request.user_agent)))
 
